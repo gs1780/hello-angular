@@ -31,6 +31,11 @@ npm run build
 
 The Angular build outputs static files to `dist/`.
 
+**Note for Windows users**: Webpack does not allow `!` characters in paths. If
+your project is located in a directory containing an exclamation mark, the build
+will fail with an `Invalid configuration object` error. Move the project to a
+path without `!` before running `npm run build`.
+
 ## Running Locally
 
 ### Backend
