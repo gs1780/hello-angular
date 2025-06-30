@@ -55,25 +55,35 @@ Navigate to `http://localhost:4200` and you should see the message fetched from 
 
 ## Deployment to Azure
 
-The `infra` folder contains CLI scripts to provision an App Service plan and two App Services (frontend and backend). You must create the resource group beforehand.
+The `infra` folder contains CLI scripts to provision an App Service plan and two App Services (frontend and backend). You must create the resource group beforehand. Windows users can use the corresponding PowerShell scripts with the `.ps1` extension.
 
 1. **Provision infrastructure**
 
-```bash
+ ```bash
+ cd infra
+ ./setup.sh <resource-group> <location> <appservice-plan-name> <frontend-app-name> <backend-app-name>
+ ```
+```powershell
 cd infra
-./setup.sh <resource-group> <location> <appservice-plan-name> <frontend-app-name> <backend-app-name>
+./setup.ps1 -ResourceGroup <resource-group> -Location <location> -PlanName <appservice-plan-name> -FrontendApp <frontend-app-name> -BackendApp <backend-app-name>
 ```
 
 2. **Deploy backend**
 
-```bash
-./deploy-backend.sh <resource-group> <backend-app-name>
+ ```bash
+ ./deploy-backend.sh <resource-group> <backend-app-name>
+ ```
+```powershell
+./deploy-backend.ps1 -ResourceGroup <resource-group> -AppName <backend-app-name>
 ```
 
 3. **Deploy frontend**
 
-```bash
-./deploy-frontend.sh <resource-group> <frontend-app-name>
+ ```bash
+ ./deploy-frontend.sh <resource-group> <frontend-app-name>
+ ```
+```powershell
+./deploy-frontend.ps1 -ResourceGroup <resource-group> -AppName <frontend-app-name>
 ```
 
 The frontend expects the backend to be accessible at `/api/hello` on the same domain. Configure a rewrite rule or API proxy if needed.
